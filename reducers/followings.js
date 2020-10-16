@@ -5,7 +5,7 @@ const followingsReducer = (state = followingsReducerDefaultState, action) => {
     case "SET_FOLLOWINGS":
       return [...action.assets];
     case "ADD_FOLLOWING":
-      return [action.asset, ...state];
+      return [...state, action.asset];
     case "REMOVE_FOLLOWING":
       return [...state.filter(({ id }) => id !== action.asset.id)];
     default:

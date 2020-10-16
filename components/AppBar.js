@@ -1,32 +1,54 @@
 import Link from "next/link";
 import { connect } from "react-redux";
+import AppBar from "@material-ui/core/AppBar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Toolbar from "@material-ui/core/Toolbar";
+import { makeStyles } from "@material-ui/core/styles";
+import { withRouter } from "next/router";
 
-const AppBar = ({ userName, email, loggedIn }) => {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
+const AppBarComponent = ({ userName, loggedIn, router }) => {
+  const classes = useStyles();
   return (
-    <div>
-      <Link href="/">
-        <a>Ytsup</a>
-      </Link>
-      {!loggedIn ? (
-        <Link href="/login">
-          <a>Login</a>
-        </Link>
-      ) : (
-        <Link href="/">
-          <a>{userName}</a>
-        </Link>
-      )}
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            <Link href="/">
+              <a>WhyUpWhyDown</a>
+            </Link>
+          </Typography>
+          {!loggedIn ? (
+            <Button color="inherit" onClick={() => router.push("/login")}>
+              Login
+            </Button>
+          ) : (
+            <Button color="inherit">{userName}</Button>
+          )}
+        </Toolbar>
+      </AppBar>
     </div>
   );
 };
 
 const mapStateToProps = ({ auth }) => {
-  const { userName, email, loggedIn } = auth;
+  const { userName, loggedIn } = auth;
   return {
     userName,
-    email,
     loggedIn,
   };
 };
 
-export default connect(mapStateToProps)(AppBar);
+export default connect(mapStateToProps)(withRouter(AppBarComponent));

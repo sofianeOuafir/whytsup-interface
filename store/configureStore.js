@@ -5,6 +5,7 @@ import thunk from "redux-thunk";
 import authReducer from "../reducers/auth";
 import followingsReducer from "../reducers/followings";
 import assetsReducer from "../reducers/assets";
+import headlinesReducer from "../reducers/headlines";
 
 let composeEnhancers;
 try {
@@ -17,6 +18,7 @@ const combinedReducer = combineReducers({
   auth: authReducer,
   followings: followingsReducer,
   assets: assetsReducer,
+  headlines: headlinesReducer,
 });
 
 const reducer = (state, action) => {

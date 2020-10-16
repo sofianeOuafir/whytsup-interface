@@ -6,7 +6,7 @@ import Assets from "./Assets";
 const Followings = ({ followings, startRemoveFollowing }) => {
   return (
     <div>
-      <h2>Followings</h2>
+      <h3>Followings</h3>
       <Assets
         assets={followings}
         onClick={startRemoveFollowing}

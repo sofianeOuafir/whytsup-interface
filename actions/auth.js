@@ -22,9 +22,6 @@ export const startLogin = ({ email, password }) => (dispatch) => {
       const user = response.data.user;
       const { name: userName, email } = user;
       dispatch(login({ userName, email }));
-    })
-    .catch((e) => {
-      dispatch(logout());
     });
 };
 
@@ -37,4 +34,25 @@ export const startAutoLogin = (cookie) => (dispatch) => {
       dispatch(login({ userName, email }));
     })
     .catch((e) => console.log(e));
+};
+
+export const startSignUp = ({
+  userName,
+  email,
+  password,
+  passwordConfirmation,
+}) => (dispatch) => {
+  const user = {
+    name: userName,
+    email,
+    password,
+    password_confirmation: passwordConfirmation,
+  };
+  return axios
+    .post("http://localhost:3001/users", user, { withCredentials: true })
+    .then((response) => {
+      const user = response.data.user;
+      const { name: userName, email } = user;
+      dispatch(login({ userName, email }));
+    });
 };

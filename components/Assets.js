@@ -1,15 +1,20 @@
+import Button from "@material-ui/core/Button";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import List from "@material-ui/core/List";
+
 const Assets = ({ assets, onClick, buttonText }) => {
   return (
-    <ul>
+    <List component="nav" aria-label="secondary mailbox folders">
       {assets.map(({ id, name, code }, index) => (
-        <li key={index}>
-          <span>
-            {name} - {code}
-          </span>
-          <button onClick={() => onClick(id)}>{buttonText}</button>
-        </li>
+        <ListItem key={index}>
+          <ListItemText primary={`${code}`} secondary={`${name}`} />
+          <Button variant="contained" color={buttonText == "Follow" ? "primary" : "secondary"} onClick={() => onClick(id)}>
+            {buttonText}
+          </Button>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 };
 
