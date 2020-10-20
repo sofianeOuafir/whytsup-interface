@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const startSetAssets = (cookie) => (dispatch) => {
   return axios
-    .get("http://localhost:3001/assets", { headers: cookie })
+    .get(`${process.env.BACKEND_URL}/assets`, { headers: cookie })
     .then((response) => {
       dispatch(setAssets(response.data));
       return response;

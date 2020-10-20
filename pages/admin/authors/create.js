@@ -27,7 +27,7 @@ class CreateHealine extends React.Component {
     const { router } = this.props;
     axios
       .post(
-        `http://localhost:3001/admin/authors`,
+        `${process.env.BACKEND_URL}/admin/authors`,
         { website, name },
         { withCredentials: true }
       )

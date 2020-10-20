@@ -14,7 +14,7 @@ export const logout = () => ({
 export const startLogin = ({ email, password }) => (dispatch) => {
   return axios
     .post(
-      "http://localhost:3001/authenticate",
+      `${process.env.BACKEND_URL}/authenticate`,
       { email, password },
       { withCredentials: true }
     )
@@ -28,7 +28,7 @@ export const startLogin = ({ email, password }) => (dispatch) => {
 export const startAutoLogin = (cookie) => (dispatch) => {
   const config = cookie ? { headers: cookie } : { withCredentials: true };
   return axios
-    .get("http://localhost:3001/auto_login", config)
+    .get(`${process.env.BACKEND_URL}/auto_login`, config)
     .then((response) => {
       const { email, name: userName } = response.data;
       dispatch(login({ userName, email }));
@@ -49,7 +49,7 @@ export const startSignUp = ({
     password_confirmation: passwordConfirmation,
   };
   return axios
-    .post("http://localhost:3001/users", user, { withCredentials: true })
+    .post(`${process.env.BACKEND_URL}/users`, user, { withCredentials: true })
     .then((response) => {
       const user = response.data.user;
       const { name: userName, email } = user;

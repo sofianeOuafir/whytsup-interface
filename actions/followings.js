@@ -26,7 +26,7 @@ export const setFollowings = (assets) => {
 
 export const startSetFollowings = (cookie) => (dispatch) => {
   return axios
-    .get("http://localhost:3001/followings", { headers: cookie })
+    .get(`${process.env.BACKEND_URL}/followings`, { headers: cookie })
     .then((response) => {
       dispatch(setFollowings(response.data));
       return response;
@@ -35,7 +35,7 @@ export const startSetFollowings = (cookie) => (dispatch) => {
 
 export const startRemoveFollowing = (assetId) => (dispatch) => {
   return axios
-    .delete(`http://localhost:3001/followings/${assetId}`, {
+    .delete(`${process.env.BACKEND_URL}/followings/${assetId}`, {
       withCredentials: true,
     })
     .then((response) => {
@@ -51,7 +51,7 @@ export const startRemoveFollowing = (assetId) => (dispatch) => {
 export const startAddFollowing = (assetId) => (dispatch) => {
   return axios
     .post(
-      "http://localhost:3001/followings",
+      `${process.env.BACKEND_URL}/followings`,
       {
         asset_id: assetId,
       },

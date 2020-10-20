@@ -35,7 +35,7 @@ const AdminHeadline = ({ headline, router }) => {
 
 const removeInfo = ({ headlineId, newsId }) => {
   axios.delete(
-    `http://localhost:3001/admin/headlines/${headlineId}/news/${newsId}`,
+    `${process.env.BACKEND_URL}/admin/headlines/${headlineId}/news/${newsId}`,
     {
       withCredentials: true,
     }

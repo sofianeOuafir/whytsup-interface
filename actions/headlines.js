@@ -9,7 +9,7 @@ export const setHeadlines = (headlines) => {
 
 export const startSetHeadlines = (cookie) => (dispatch) => {
   return axios
-    .get("http://localhost:3001/headlines", { headers: cookie })
+    .get(`${process.env.BACKEND_URL}/headlines`, { headers: cookie })
     .then((response) => {
       dispatch(setHeadlines(response.data));
       return response;
@@ -18,7 +18,7 @@ export const startSetHeadlines = (cookie) => (dispatch) => {
 
 export const startGetHeadline = ({ cookie, id }) => {
   return axios
-    .get(`http://localhost:3001/headlines/${id}`, { headers: cookie })
+    .get(`${process.env.BACKEND_URL}/headlines/${id}`, { headers: cookie })
     .then((response) => {
       return response;
     });
@@ -26,7 +26,7 @@ export const startGetHeadline = ({ cookie, id }) => {
 
 export const startCreateHeadline = (assetId) => {
   return axios.post(
-    "http://localhost:3001/admin/headlines",
+    `${process.env.BACKEND_URL}/admin/headlines`,
     { asset_id: assetId },
     {
       withCredentials: true,
@@ -35,13 +35,13 @@ export const startCreateHeadline = (assetId) => {
 };
 
 export const startGetAdminHeadlines = (cookie) => {
-  return axios.get("http://localhost:3001/admin/headlines", {
+  return axios.get(`${process.env.BACKEND_URL}/admin/headlines`, {
     headers: cookie,
   });
 };
 
 export const startGetAdminHeadline = ({ cookie, id }) => {
-  return axios.get(`http://localhost:3001/admin/headlines/${id}`, {
+  return axios.get(`${process.env.BACKEND_URL}/admin/headlines/${id}`, {
     headers: cookie,
   });
 };

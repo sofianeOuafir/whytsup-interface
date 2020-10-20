@@ -48,9 +48,13 @@ class AdminCreateNews extends React.Component {
       link,
     };
     axios
-      .post(`http://localhost:3001/admin/headlines/${headlineId}/news`, news, {
-        withCredentials: true,
-      })
+      .post(
+        `${process.env.BACKEND_URL}/admin/headlines/${headlineId}/news`,
+        news,
+        {
+          withCredentials: true,
+        }
+      )
       .then(() => {
         const { router } = this.props;
         router.push(`/admin/headlines/${headlineId}`);
@@ -100,7 +104,9 @@ class AdminCreateNews extends React.Component {
           </select>
           <button>Create</button>
         </form>
-        <Link href="/admin/authors/create"><a>Create Author</a></Link>
+        <Link href="/admin/authors/create">
+          <a>Create Author</a>
+        </Link>
       </div>
     );
   }
@@ -113,13 +119,13 @@ export const getServerSideProps = wrapper.getServerSideProps(
       : undefined;
     const { id: headlineId } = params;
     const headlineResponse = await axios.get(
-      `http://localhost:3001/admin/headlines/${headlineId}`,
+      `${process.env.BACKEND_URL}/admin/headlines/${headlineId}`,
       {
         headers: cookie,
       }
     );
     const authorResponse = await axios.get(
-      "http://localhost:3001/admin/authors",
+      `${process.env.BACKEND_URL}/admin/authors`,
       {
         headers: cookie,
       }

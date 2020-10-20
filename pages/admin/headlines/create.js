@@ -99,9 +99,12 @@ export const getServerSideProps = wrapper.getServerSideProps(
       ? { cookie: req.headers.cookie }
       : undefined;
 
-    const response = await axios.get("http://localhost:3001/admin/assets", {
-      headers: cookie,
-    });
+    const response = await axios.get(
+      `${process.env.BACKEND_URL}/admin/assets`,
+      {
+        headers: cookie,
+      }
+    );
     const assets = response.data;
     return {
       props: {
