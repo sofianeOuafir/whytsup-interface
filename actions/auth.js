@@ -26,7 +26,7 @@ export const startLogin = ({ email, password }) => (dispatch) => {
 };
 
 export const startAutoLogin = (cookie) => (dispatch) => {
-  const config = cookie ? { headers: cookie } : { withCredentials: true };
+  const config = cookie ? { headers: cookie, sameSite: "None", secure: true } : { withCredentials: true, sameSite: "None", secure: true };
   return axios
     .get(`${process.env.BACKEND_URL}/auto_login`, config)
     .then((response) => {
