@@ -5,7 +5,7 @@ import { startAutoLogin } from "../actions/auth";
 import App from "next/app";
 
 class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
+  static async getServerSideProps({ Component, ctx }) {
     const server = !!ctx.req;
     const cookie =
       server && ctx.req.headers.cookie
@@ -15,8 +15,8 @@ class MyApp extends App {
     return {
       pageProps: {
         // Call page-level getInitialProps
-        ...(Component.getInitialProps
-          ? await Component.getInitialProps(ctx)
+        ...(Component.getServerSideProps
+          ? await Component.getServerSideProps(ctx)
           : {}),
         // Some custom thing for all pages
         pathname: ctx.pathname,
