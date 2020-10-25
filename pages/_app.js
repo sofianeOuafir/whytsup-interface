@@ -9,7 +9,7 @@ class MyApp extends App {
     const server = !!ctx.req;
     const cookie =
       server && ctx.req.headers.cookie
-        ? { cookie: ctx.req.headers.cookie }
+        ? { cookie: ctx.req.headers.cookie, withCredentials: true }
         : undefined;
     await ctx.store.dispatch(startAutoLogin(cookie));
     return {
