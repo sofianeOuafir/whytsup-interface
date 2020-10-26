@@ -27,7 +27,7 @@ const AppBarComponent = ({ userName, loggedIn, router }) => {
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             <Link href="/">
-              <a>WhyUpWhyDown</a>
+              <a>Assetify</a>
             </Link>
           </Typography>
           {!loggedIn ? (
