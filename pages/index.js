@@ -8,7 +8,7 @@ import Paper from "@material-ui/core/Paper";
 
 const Home = () => {
   return (
-    <Layout title="WhyUpWhyDown">
+    <Layout title="Assetify">
       <Paper>
         <Headlines />
       </Paper>
